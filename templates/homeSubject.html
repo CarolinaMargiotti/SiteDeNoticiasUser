@@ -1,7 +1,7 @@
 {% block head %}
-<title>Home</title>
+<title>{{subject}}</title>
 {% endblock %} {% extends 'base.html' %} {% block content %}
-<h1>Todas noticias</h1>
+<h1>{{subject}}</h1>
 <dl>
 	{% for news in newsList %}
 	<dt>
