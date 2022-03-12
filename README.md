@@ -1,7 +1,7 @@
 # SiteDeNoticias
 
 ## instalar:
-pip flask
+pip install flask
 
 ## rodar:
 python server.py
