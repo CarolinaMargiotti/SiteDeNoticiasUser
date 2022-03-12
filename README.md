@@ -1,4 +1,5 @@
 # SiteDeNoticias
+Essa é a versão do usuario em que qualquer um pode ler as noticias.
 
 ## instalar:
 pip install flask
