@@ -1,10 +1,14 @@
 # SiteDeNoticias
 Essa é a versão do usuario em que qualquer um pode ler as noticias.
 
-## instalar:
-pip install flask
+# Como rodar
+1- Ativar virtualenv
+.\myenv\Scripts\activate
 
-## rodar:
+2- Instalar dependencias
+pip install -r requirements.txt
+
+3- Rodar app
 python server.py
 
 # Requisitos Técnicos
