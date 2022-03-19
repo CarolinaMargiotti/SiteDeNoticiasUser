@@ -4,15 +4,17 @@
 <h1>Todas noticias</h1>
 <dl>
 	{% for news in newsList %}
-	<hr />
-	<dt>
-		<b class="subject">[{{news.assunto}}]</b>
-		<a href="{{url_for('news.newsPost',postId=news.id)}}">
-			{{news.titulo}}</a
-		>
-		<p>{{news.conteudo}}</p>
-	</dt>
-	<br />
+	<div>
+		<hr />
+		<dt>
+			<b class="subject">[{{news.assunto}}]</b>
+			<a href="{{url_for('news.newsPost',postId=news.id)}}">
+				{{news.titulo}}</a
+			>
+			<div class="newsContent">{{news.conteudo}}</div>
+		</dt>
+		<br />
+	</div>
 	{% endfor %}
 </dl>
 {% endblock content %}

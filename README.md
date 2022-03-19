@@ -2,13 +2,19 @@
 Essa é a versão do usuario em que qualquer um pode ler as noticias.
 
 # Como rodar
-1- Ativar virtualenv
+1. Instalar virtualenv
+pip install virtualenv
+
+1. Criar ambiente do virtualenv
+virtualenv myenv
+
+2. Ativar virtualenv
 .\myenv\Scripts\activate
 
-2- Instalar dependencias
+3. Instalar dependencias
 pip install -r requirements.txt
 
-3- Rodar app
+4. Rodar app
 python server.py
 
 # Requisitos Técnicos
