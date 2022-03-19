@@ -1,7 +1,7 @@
 {% block head %}
 <title>{{newsDetails.titulo}}</title>
 {% endblock %} {% extends 'base.html' %} {% block content %}
-<h1>{{newsDetails.titulo}}</h1>
-<h3>[{{newsDetails.assunto}}]</h3>
+<h1 class="blueText">{{newsDetails.titulo}}</h1>
+<h3 class="grayText">[{{newsDetails.assunto}}]</h3>
 <p>{{newsDetails.conteudo}}</p>
 {% endblock %}
