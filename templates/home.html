@@ -7,7 +7,7 @@
 	<div>
 		<hr />
 		<dt>
-			<b class="subject">[{{news.assunto}}]</b>
+			<b class="subject">[{{subjects.get(news.assunto)}}]</b>
 			<a href="{{url_for('news.newsPost',postId=news.id)}}">
 				{{news.titulo}}</a
 			>

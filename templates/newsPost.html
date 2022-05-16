@@ -2,6 +2,6 @@
 <title>{{newsDetails.titulo}}</title>
 {% endblock %} {% extends 'base.html' %} {% block content %}
 <h1 class="blueText">{{newsDetails.titulo}}</h1>
-<h3 class="grayText">[{{newsDetails.assunto}}]</h3>
+<h3 class="grayText">[{{subjects.get(newsDetails.assunto)}}]</h3>
 <p>{{newsDetails.conteudo}}</p>
 {% endblock %}

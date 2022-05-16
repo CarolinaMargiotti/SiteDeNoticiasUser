@@ -1,15 +1,28 @@
-from flask import request, jsonify, render_template
+from flask import jsonify, render_template
+import requests
+from controllers.subjects_controller import getAllSubjects
+
 
 #import dos models
 from models.news import news as noticias
 
+baseUrl="http://127.0.0.1:8080"
+
 assuntos = ['pets','arte','geek']
 
-def getNews():
-    return noticias
+def getNews(startNumber,limit):
+    try:
+        response = requests.get(f'{baseUrl}/getallnews?startNumber={startNumber}&quantity={limit}')
+        return response.json()
+    except:
+        return {}
 
 def getNewsPost(id):
-    return noticias[id]
+    try:
+        response = requests.get(f'{baseUrl}/getnews?id={id}')
+        return response.json()
+    except:
+        return {}
 
 def getSubjects():
     return assuntos
@@ -19,15 +32,17 @@ def getSubjectFromId(id):
 
 def getNewsSubjects(subject):
     noticias=[]
-    for news in getNews():
-        if news['assunto'] == subject:
-            noticias.append(news)
+    # for news in getNews():
+    #     if news['assunto'] == subject:
+    #         noticias.append(news)
     return noticias
 
 #retorno dos templates
-def home():
-    noticias=getNews()
-    return render_template("home.html",newsList=noticias)
+
+def home(limit,pageNumber):
+    noticias=getNews(pageNumber,limit)
+    assuntos = getAllSubjects()
+    return render_template("home.html",newsList=noticias,subjects=assuntos)
 
 def homeSubject(subject):
     noticias = getNewsSubjects(subject)
@@ -35,4 +50,5 @@ def homeSubject(subject):
 
 def newsPost(id):
     noticia = getNewsPost(id)
-    return render_template("newsPost.html",newsDetails=noticia)
+    assuntos = getAllSubjects()
+    return render_template("newsPost.html",newsDetails=noticia,subjects=assuntos)
