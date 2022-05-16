@@ -24,9 +24,10 @@ def getNewsPost(id):
 #retorno dos templates
 
 def home(limit,pageNumber):
-    noticias=getNews(pageNumber,limit)
+    startNumber = (int(limit)*int(pageNumber))-(int(limit)-1)
+    noticias=getNews(startNumber,limit)
     assuntos = getAllSubjects()
-    return render_template("home.html",newsList=noticias,subjects=assuntos)
+    return render_template("home.html",newsList=noticias,subjects=assuntos,pageNumber=pageNumber,quantity=limit)
 
 
 def newsPost(id):

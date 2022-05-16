@@ -2,6 +2,13 @@
 <title>Home</title>
 {% endblock %} {% extends 'base.html' %} {% block content %}
 <h1>Todas noticias</h1>
+<label>Quantidade por pagina:</label>
+<input
+	type="text"
+	value="{{quantity}}"
+	id="limitPerPage"
+	onchange="changeLimit(value)"
+/>
 <dl>
 	{% for news in newsList %}
 	<div>
@@ -16,5 +23,24 @@
 		<br />
 	</div>
 	{% endfor %}
+
+	<button onclick="changePage({{pageNumber}}-1,{{quantity}})"><-</button>
+	<label id="pageLabel">{{pageNumber}}</label>
+	<button onclick="changePage({{pageNumber}}+1,{{quantity}})">-></button>
 </dl>
+<script>
+	const userBaseUrl = "http://127.0.0.1:5000";
+	const news = {{newsList | tojson}}
+	const currentPage = {{pageNumber | tojson}}
+
+	function changePage(newPage, quantity) {
+		if (newPage <= 0) return;
+		if (news.length < quantity && newPage > currentPage) return;
+		window.location = `${userBaseUrl}?pageNumber=${newPage}&limit=${quantity}`
+	}
+
+	function changeLimit(value){
+		window.location = `${userBaseUrl}?pageNumber=${currentPage}&limit=${value}`;
+	}
+</script>
 {% endblock content %}
