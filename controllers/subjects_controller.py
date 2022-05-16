@@ -17,9 +17,32 @@ def getAllSubjects():
     except:
         return []
 
+def getSubjects(startNumber,limit):
+    try:
+        response = requests.get(f"{baseUrl}/getsubjects?startNumber={startNumber}&quantity={limit}")
+        return response.json()
+    except:
+        return []
+
 def getSubjectById(id):
     try:
         response = requests.get(f"{baseUrl}/getnewsbyid?id={id}")
         return response.json()
     except:
         return {}
+
+def getNewsSubjects(startNumber,limit,subject):
+    try:
+        response = requests.get(f'{baseUrl}/getallnewsbysubject?startNumber={startNumber}&quantity={limit}&assunto={subject}')
+        return response.json()
+    except:
+        return []
+
+def subjectsList(pageNumber,limit):
+    assuntos = getSubjects(pageNumber,limit)
+    return render_template("homeSubjects.html",subjects=assuntos)
+
+def newsBySubjects(startNumber,limit,subject):
+    assunto = getSubjectById(subject)
+    noticias = getNewsSubjects(startNumber,limit,subject)
+    return render_template("newsBySubjects.html",newsList=noticias,subject=assunto)

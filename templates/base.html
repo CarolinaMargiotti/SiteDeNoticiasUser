@@ -16,15 +16,7 @@
 					CarolNews
 				</h1>
 				<div class="menu">
-					<a href="{{url_for('news.homeSubject',subject='pets')}}"
-						>Pets</a
-					>
-					<a href="{{url_for('news.homeSubject',subject='arte')}}"
-						>Arte</a
-					>
-					<a href="{{url_for('news.homeSubject',subject='geek')}}"
-						>Geek</a
-					>
+					<a href="{{url_for('subjects.homeSubject')}}">Assuntos</a>
 				</div>
 			</div>
 			<hr class="headerHr" />
@@ -154,7 +146,7 @@
 		margin-left: 2%;
 	}
 
-	p{
+	p {
 		text-align: justify;
 		margin: -22px;
 		background-color: white;

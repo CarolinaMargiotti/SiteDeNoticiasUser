@@ -1,0 +1,13 @@
+{% block head %}
+<title>Assuntos</title>
+{% endblock %} {% extends 'base.html' %} {% block content %}
+<h1>Assuntos</h1>
+<dl>
+	{% for key,value in subjects.items() %}
+	<a class="subject" href="{{url_for('subjects.subjectsList',subject=key)}}"
+		>{{value}}</a
+	>
+	<br />
+	{% endfor %}
+</dl>
+{% endblock content %}

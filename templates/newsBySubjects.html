@@ -1,12 +1,12 @@
 {% block head %}
 <title>{{subject}}</title>
 {% endblock %} {% extends 'base.html' %} {% block content %}
-<h1>{{subject}}</h1>
+<h1>{{subject.subjectName}}</h1>
 <dl>
 	{% for news in newsList %}
 	<dt>
 		<a href="{{url_for('news.newsPost',postId=news.id)}}"
-			>[{{news.assunto}}] {{news.titulo}}</a
+			>[{{subject.subjectName}}] {{news.titulo}}</a
 		>
 	</dt>
 	{% endfor %}

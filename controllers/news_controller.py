@@ -2,13 +2,10 @@ from flask import jsonify, render_template
 import requests
 from controllers.subjects_controller import getAllSubjects
 
-
 #import dos models
 from models.news import news as noticias
 
 baseUrl="http://127.0.0.1:8080"
-
-assuntos = ['pets','arte','geek']
 
 def getNews(startNumber,limit):
     try:
@@ -24,19 +21,6 @@ def getNewsPost(id):
     except:
         return {}
 
-def getSubjects():
-    return assuntos
-
-def getSubjectFromId(id):
-    return assuntos[id]
-
-def getNewsSubjects(subject):
-    noticias=[]
-    # for news in getNews():
-    #     if news['assunto'] == subject:
-    #         noticias.append(news)
-    return noticias
-
 #retorno dos templates
 
 def home(limit,pageNumber):
@@ -44,9 +28,6 @@ def home(limit,pageNumber):
     assuntos = getAllSubjects()
     return render_template("home.html",newsList=noticias,subjects=assuntos)
 
-def homeSubject(subject):
-    noticias = getNewsSubjects(subject)
-    return render_template("homeSubject.html",newsList=noticias,subject=subject)
 
 def newsPost(id):
     noticia = getNewsPost(id)
