@@ -2,9 +2,6 @@ from flask import jsonify, render_template
 import requests
 from controllers.subjects_controller import getAllSubjects
 
-#import dos models
-from models.news import news as noticias
-
 baseUrl="http://127.0.0.1:8080"
 
 def getNews(startNumber,limit):

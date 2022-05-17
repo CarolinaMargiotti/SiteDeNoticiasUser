@@ -2,6 +2,13 @@
 <title>Assuntos</title>
 {% endblock %} {% extends 'base.html' %} {% block content %}
 <h1>Assuntos</h1>
+<label>Quantidade por pagina:</label>
+<input
+	type="text"
+	value="{{quantity}}"
+	id="limitPerPage"
+	onchange="changeLimit(value)"
+/>
 <dl>
 	{% for key,value in subjects.items() %}
 	<a class="subject" href="{{url_for('subjects.subjectsList',subject=key)}}"
@@ -9,5 +16,25 @@
 	>
 	<br />
 	{% endfor %}
+
+	<button onclick="changePage({{pageNumber}}-1,{{quantity}})"><-</button>
+	<label id="pageLabel">{{pageNumber}}</label>
+	<button onclick="changePage({{pageNumber}}+1,{{quantity}})">-></button>
 </dl>
+<script>
+	const userBaseUrl = "http://127.0.0.1:5000";
+	const subjectsList = {{subjects | tojson}}
+	const currentPage = {{pageNumber | tojson}}
+
+	function changePage(newPage, quantity) {
+		subjectsListLength = Object.keys(subjectsList).length
+		if (newPage <= 0) return;
+		if (subjectsListLength < quantity && newPage > currentPage) return;
+		window.location = `${userBaseUrl}/homesubject?pageNumber=${newPage}&limit=${quantity}`
+	}
+
+	function changeLimit(value){
+		window.location = `${userBaseUrl}/homesubject?pageNumber=${currentPage}&limit=${value}`;
+	}
+</script>
 {% endblock content %}

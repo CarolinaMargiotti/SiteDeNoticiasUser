@@ -39,8 +39,9 @@ def getNewsSubjects(startNumber,limit,subject):
         return []
 
 def subjectsList(pageNumber,limit):
-    assuntos = getSubjects(pageNumber,limit)
-    return render_template("homeSubjects.html",subjects=assuntos)
+    startNumber = (int(limit)*int(pageNumber))-(int(limit)-1)
+    assuntos = getSubjects(startNumber,limit)
+    return render_template("homeSubjects.html",subjects=assuntos,pageNumber=pageNumber,quantity=limit)
 
 def newsBySubjects(startNumber,limit,subject):
     assunto = getSubjectById(subject)
