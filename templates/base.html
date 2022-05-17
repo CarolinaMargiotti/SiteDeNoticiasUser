@@ -1,155 +1,162 @@
 <!DOCTYPE html>
 <html lang="en">
-	<head>
-		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		{% block head %} {% endblock %}
-	</head>
-	<body>
-		<div class="content">
-			<div class="header">
-				<!--ignorar-->
-				<h1
-					class="logo"
-					onclick="window.location.href='{{ url_for( 'news.home' ) }}';"
-				>
-					CarolNews
-				</h1>
-				<div class="menu">
-					<a href="{{url_for('subjects.homeSubject')}}">Assuntos</a>
-				</div>
-			</div>
-			<hr class="headerHr" />
-			{% block content %} {% endblock %}
-		</div>
-	</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    {% block head %} {% endblock %}
+  </head>
+  <body>
+    <div class="content">
+      <div class="header">
+        <!--ignorar-->
+        <h1
+          class="logo"
+          onclick="window.location.href='{{ url_for( 'news.home' ) }}';"
+        >
+          CarolNews
+        </h1>
+        <div class="menu">
+          <a href="{{url_for('subjects.homeSubject')}}">Assuntos</a>
+          {% for key,value in subjectsListForMenu.items() %}
+          <a
+            class="subject"
+            href="{{url_for('subjects.subjectsList',subject=key)}}"
+            >{{value}}</a
+          >
+          {% endfor %}
+        </div>
+      </div>
+      <hr class="headerHr" />
+      {% block content %} {% endblock %}
+    </div>
+  </body>
 </html>
 
 <style>
-	body {
-		width: auto;
-		margin: auto;
-		height: 100%;
-		max-width: 1100px;
-		font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS",
-			sans-serif;
-		background-color: #0468aa;
-	}
+  body {
+    width: auto;
+    margin: auto;
+    height: 100%;
+    max-width: 1100px;
+    font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS",
+      sans-serif;
+    background-color: #0468aa;
+  }
 
-	.content {
-		width: 100%;
-		height: 100%;
-		padding: 2%;
-		background-color: white;
-	}
+  .content {
+    width: 100%;
+    height: 100%;
+    padding: 2%;
+    background-color: white;
+  }
 
-	.subject {
-		font-size: large;
-		color: #0468aa;
-	}
+  .subject {
+    font-size: large;
+    color: #0468aa;
+  }
 
-	.blueText {
-		color: #0468aa;
-	}
+  .blueText {
+    color: #0468aa;
+  }
 
-	.grayText {
-		color: dimgrey;
-	}
+  .grayText {
+    color: dimgrey;
+  }
 
-	hr {
-		width: 100%;
-		background-color: #0468aa;
-		border: 1px solid #0468aa;
-	}
+  hr {
+    width: 100%;
+    background-color: #0468aa;
+    border: 1px solid #0468aa;
+  }
 
-	button {
-		background-color: #0468aa;
-		color: white;
-		border: 1px solid #ddd;
-		padding: 5px;
-		padding-left: 8px;
-		padding-right: 8px;
-		margin-right: 7px;
-		margin-top: 7px;
-		margin-bottom: 7px;
-		border-radius: 4px;
-	}
+  button {
+    background-color: #0468aa;
+    color: white;
+    border: 1px solid #ddd;
+    padding: 5px;
+    padding-left: 8px;
+    padding-right: 8px;
+    margin-right: 7px;
+    margin-top: 7px;
+    margin-bottom: 7px;
+    border-radius: 4px;
+  }
 
-	button:hover {
-		background-color: #0e1b8b;
-	}
+  button:hover {
+    background-color: #0e1b8b;
+  }
 
-	input {
-		margin-left: 10px;
-		margin-right: 10px;
-		margin-bottom: 10px;
-		border: 1px solid #ddd;
-		padding: 4px;
-		border-radius: 4px;
-	}
+  input {
+    margin-left: 10px;
+    margin-right: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ddd;
+    padding: 4px;
+    border-radius: 4px;
+  }
 
-	a {
-		color: #0468aa;
-	}
+  a {
+    color: #0468aa;
+  }
 
-	select {
-		padding: 4px;
-		margin-left: 10px;
-		margin-bottom: 10px;
-		margin-right: 10px;
-		border: 1px solid #ddd;
-		border-radius: 4px;
-	}
+  select {
+    padding: 4px;
+    margin-left: 10px;
+    margin-bottom: 10px;
+    margin-right: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+  }
 
-	.header {
-		width: 100%;
-		display: inline-flex;
-		justify-content: flex-start;
-		align-items: center;
-	}
+  .header {
+    width: 100%;
+    display: inline-flex;
+    justify-content: flex-start;
+    align-items: center;
+  }
 
-	.menu {
-		font-size: medium;
-		padding-left: 3%;
-		font-weight: bold;
-	}
+  .menu {
+    font-size: medium;
+    padding-left: 3%;
+    font-weight: bold;
+  }
 
-	.menu a {
-		margin-right: 20px;
-	}
+  .menu a {
+    margin-right: 20px;
+  }
 
-	.headerHr {
-		width: 100%;
-		height: 5%;
-		background-color: #0468aa;
-		border: 1px solid #0468aa;
-	}
+  .headerHr {
+    width: 100%;
+    height: 5%;
+    background-color: #0468aa;
+    border: 1px solid #0468aa;
+  }
 
-	.logo {
-		padding-right: 5px;
-		user-select: none;
-	}
+  .logo {
+    padding-right: 5px;
+    user-select: none;
+  }
 
-	.modal {
-		position: relative;
-		width: fit-content;
-		height: fit-content;
-		padding: 1%;
-		margin-bottom: 1%;
-		background-color: white;
-		text-align: center;
-		border: 3px solid #0468aa;
-		cursor: pointer;
-	}
+  .modal {
+    position: relative;
+    width: fit-content;
+    height: fit-content;
+    padding: 1%;
+    margin-bottom: 1%;
+    background-color: white;
+    text-align: center;
+    border: 3px solid #0468aa;
+    cursor: pointer;
+  }
 
-	.newsContent {
-		margin-left: 2%;
-	}
+  .newsContent {
+    margin-left: 2%;
+  }
 
-	p {
-		text-align: justify;
-		margin: -22px;
-		background-color: white;
-		padding: 2%;
-	}
+  p {
+    text-align: justify;
+    margin: -22px;
+    background-color: white;
+    padding: 2%;
+  }
 </style>

@@ -5,11 +5,24 @@ from controllers.news_controller import home as news_home
 from controllers.news_controller import newsPost as news_post
 from controllers.subjects_controller import subjectsList as subjects_list
 from controllers.subjects_controller import newsBySubjects as news_by_subjects
+from controllers.subjects_controller import getSubjects
 
 template_dir = os.path.abspath('sitedenoticiasuser/templates/')
 
 news_bp = Blueprint("news",__name__,template_folder=template_dir)
 subjects_bp = Blueprint("subjects",__name__,template_folder=template_dir)
+
+@news_bp.context_processor
+def inject_news_subjects():
+    res = getSubjects(1,3)
+    return dict(subjectsListForMenu=res)
+
+
+@subjects_bp.context_processor
+def inject_news_subjects():
+    res = getSubjects(1,3)
+    return dict(subjectsListForMenu=res)
+
 
 @news_bp.route("/")
 def home():
