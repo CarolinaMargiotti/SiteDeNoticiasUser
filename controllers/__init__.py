@@ -7,21 +7,28 @@ from controllers.subjects_controller import subjectsList as subjects_list
 from controllers.subjects_controller import newsBySubjects as news_by_subjects
 from controllers.subjects_controller import getSubjects
 
+from models.envVariables import serviceUrl,projectUrl
+
+
 template_dir = os.path.abspath('sitedenoticiasuser/templates/')
 
 news_bp = Blueprint("news",__name__,template_folder=template_dir)
 subjects_bp = Blueprint("subjects",__name__,template_folder=template_dir)
 
+def envVariablesDict():
+    res = getSubjects(1,3)
+    return dict(subjectsListForMenu=res,serviceUrl=serviceUrl,projectUrl=projectUrl)
+
+
 @news_bp.context_processor
 def inject_news_subjects():
-    res = getSubjects(1,3)
-    return dict(subjectsListForMenu=res)
+    return envVariablesDict()
 
 
 @subjects_bp.context_processor
 def inject_news_subjects():
-    res = getSubjects(1,3)
-    return dict(subjectsListForMenu=res)
+    return envVariablesDict()
+
 
 
 @news_bp.route("/")

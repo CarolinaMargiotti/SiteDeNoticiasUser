@@ -1,19 +1,18 @@
 from flask import jsonify, render_template
 import requests
 from controllers.subjects_controller import getAllSubjects
-
-baseUrl="http://127.0.0.1:8080"
+from models.envVariables import serviceUrl
 
 def getNews(startNumber,limit):
     try:
-        response = requests.get(f'{baseUrl}/getallnews?startNumber={startNumber}&quantity={limit}')
+        response = requests.get(f'{serviceUrl}/getallnews?startNumber={startNumber}&quantity={limit}')
         return response.json()
     except:
         return {}
 
 def getNewsPost(id):
     try:
-        response = requests.get(f'{baseUrl}/getnews?id={id}')
+        response = requests.get(f'{serviceUrl}/getnews?id={id}')
         return response.json()
     except:
         return {}
